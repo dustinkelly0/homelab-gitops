@@ -1,0 +1,11 @@
+version: '3'
+tasks:
+  lint:
+    cmds:
+      - make lint
+  validate:
+    cmds:
+      - make validate
+  bootstrap:
+    cmds:
+      - bash scripts/bootstrap-cluster.sh

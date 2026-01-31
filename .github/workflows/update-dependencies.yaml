@@ -1,0 +1,12 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+
+jobs:
+  renovate-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Placeholder
+        run: echo "Use Renovate or Dependabot to update dependencies"

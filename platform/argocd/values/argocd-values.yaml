@@ -1,0 +1,15 @@
+server:
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: true
+    hosts:
+      - argocd.example.com
+configs:
+  secret:
+    admin.password: "changeme"
+rbac:
+  policy:
+    - "p, role:admin, applications, *, */*"
+dex:
+  enabled: false

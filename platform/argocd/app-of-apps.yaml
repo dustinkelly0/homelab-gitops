@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Replace the repoURL below with the Git URL where this repo will be hosted
+    # Example: https://github.com/your-org/homelab-gitops
+    repoURL: https://github.com/YOUR_ORG/homelab-gitops
+    path: platform/argocd/applications
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}

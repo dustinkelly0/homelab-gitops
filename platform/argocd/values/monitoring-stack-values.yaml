@@ -1,0 +1,17 @@
+grafana:
+  adminPassword: "changeme"
+prometheus:
+  prometheusSpec:
+    retention: 15d
+kubePrometheusStack:
+  kubeStateMetrics:
+    replicas: 1
+prometheusOperator:
+  admissionWebhooks:
+    enabled: true
+prometheus:
+  prometheusSpec:
+    scrapeInterval: 30s
+alertmanager:
+  alertmanagerSpec:
+    retention: 120h

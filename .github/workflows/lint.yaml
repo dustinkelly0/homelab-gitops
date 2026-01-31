@@ -1,0 +1,13 @@
+name: Lint Manifests
+
+on: [push, pull_request]
+
+jobs:
+  kube-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kubeval
+        run: sudo wget -qO /usr/local/bin/kubeval https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64 && sudo chmod +x /usr/local/bin/kubeval
+      - name: Validate manifests
+        run: find . -name '*.yaml' -o -name '*.yml' | xargs -r kubeval --strict

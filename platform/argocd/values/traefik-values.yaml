@@ -1,0 +1,22 @@
+service:
+  type: LoadBalancer
+deployment:
+  replicas: 1
+ports:
+  web:
+    exposedPort: 80
+  websecure:
+    exposedPort: 443
+dashboard:
+  enabled: true
+  domain: traefik.local
+providers:
+  kubernetesCRD: true
+ingressRoute:
+  dashboard:
+    enabled: true
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"

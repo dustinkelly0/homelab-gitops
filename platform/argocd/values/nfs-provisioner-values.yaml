@@ -1,0 +1,7 @@
+nfs:
+  server: "10.0.0.10" # replace with your NFS server
+  path: "/export/k8s"
+storageClass:
+  create: true
+  defaultClass: false
+  name: nfs-standard

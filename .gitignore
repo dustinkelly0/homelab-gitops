@@ -1,0 +1,23 @@
+#Secrets
+*.key
+*.crt
+secrets/
+.env
+
+# Talos 
+talosconfig
+kubeconfig
+
+# IDE 
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+#Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.private/

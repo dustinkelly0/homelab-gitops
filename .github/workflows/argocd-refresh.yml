@@ -1,0 +1,35 @@
+name: Trigger ArgoCD refresh on push
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  refresh-argocd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install argocd CLI
+        run: |
+          ARCH=amd64
+          curl -sSL -o /tmp/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-${ARCH}
+          sudo install -m 0755 /tmp/argocd /usr/local/bin/argocd
+          argocd version --client
+
+      - name: Login to ArgoCD
+        env:
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }}
+          ARGOCD_AUTH_TOKEN: ${{ secrets.ARGOCD_AUTH_TOKEN }}
+        run: |
+          if [ -z "$ARGOCD_SERVER" ] || [ -z "$ARGOCD_AUTH_TOKEN" ]; then
+            echo "ARGOCD_SERVER and ARGOCD_AUTH_TOKEN must be set as repository secrets";
+            exit 1;
+          fi
+          argocd login "$ARGOCD_SERVER" --insecure --auth-token "$ARGOCD_AUTH_TOKEN"
+
+      - name: Sync app-of-apps
+        run: |
+          # Sync the app-of-apps so ArgoCD will reconcile apps in platform/argocd/applications
+          argocd app sync app-of-apps --prune --refresh --timeout 600

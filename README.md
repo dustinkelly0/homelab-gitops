@@ -1,3 +1,27 @@
+# Homelab GitOps
+
+This repository contains a production-oriented GitOps layout for running a
+personal homelab. It includes declarative manifests, platform tooling, app
+deployments, operational runbooks, and automation scripts.
+
+Principles
+- Declarative manifests as single source of truth
+- Small blast radius with namespaced application deployments
+- Observability and automated validation in CI
+- Documented runbooks and ADRs for operational clarity
+
+Layout
+- `docs/`: architecture, ADRs, runbooks, SLOs
+- `infrastructure/`: platform and infra manifests
+- `platform/`: ArgoCD, Crossplane, and app-of-apps
+- `applications/`: curated application deployments
+- `scripts/`: operational automation
+- `tests/`: smoke and integration checks
+
+See `docs/architecture.md` for the system design and `docs/runbooks/` for
+operational procedures.
+
+License: MIT
 # Kubernetes Homelab - GitOps Infrastructure
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

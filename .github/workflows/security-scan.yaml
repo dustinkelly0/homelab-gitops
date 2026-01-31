@@ -1,0 +1,11 @@
+name: Security Scan
+
+on: [push]
+
+jobs:
+  trivy-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run trivy for manifests (placeholder)
+        run: echo "Run security scans (add Trivy or other scanners)"
